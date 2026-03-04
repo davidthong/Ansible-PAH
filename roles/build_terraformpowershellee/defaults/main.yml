@@ -8,23 +8,23 @@ image_name: terraformpowershellee
 bindep_file: bindep.txt
 galaxy_requirements_file: requirements.yml
 python_requirements_file: requirements.txt
-ee_base_image: aap.shadowman.dev/ansible-automation-platform/ee-minimal-rhel9:2.18
-ee_base_sig_name: registry.redhat.io/ansible-automation-platform/ee-minimal-rhel9:2.18
+ee_base_image: aap25.dthong.com/ansible-automation-platform-25/ee-minimal-rhel9:latest
+ee_base_sig_name: registry.redhat.io/ansible-automation-platform/ee-minimal-rhel9:latest
 galaxy_keyring: /certs/fullkeyring.kbx
 ee_package_manager_path: /usr/bin/microdnf
 ee_python_interpreter:
  python_path: "/usr/bin/python3.11"
 ee_build_files:
-  - src: /home/ansible/ansible/builder/terraformpowershellee/ansible.cfg
-    dest: configs
-  - src: /certs/shadowman_cert.cer
-    dest: certs
-  - src: /certs/shadowman_private.key
-    dest: certs
-  - src: /certs/certificate.pfx
-    dest: certs
-  - src: /certs/service-ca-cert.crt
-    dest: certs
+ - src: /home/ansible/ansible/builder/terraformpowershellee/ansible.cfg
+   dest: configs
+#  - src: /certs/shadowman_cert.cer
+#    dest: certs
+#  - src: /certs/shadowman_private.key
+#    dest: certs
+#  - src: /certs/certificate.pfx
+#    dest: certs
+#  - src: /certs/service-ca-cert.crt
+#    dest: certs
 ee_bindep:
   - git [platform:rpm]
   - pkgconf-pkg-config [platform:rpm]
@@ -55,10 +55,10 @@ ee_append_final:
   - RUN /opt/microsoft/powershell/7/pwsh -Command 'Install-Module -Name VMware.Vim -RequiredVersion 8.3.0.24145081 -Scope AllUsers -Confirm:$False -Force'
   - RUN /opt/microsoft/powershell/7/pwsh -Command 'Set-PowerCLIConfiguration -Scope AllUsers -ParticipateInCEIP $false -Confirm:$False'
   - RUN /opt/microsoft/powershell/7/pwsh -Command 'Set-PowerCLIConfiguration -Scope AllUsers -InvalidCertificateAction Ignore -Confirm:$False'
-  - COPY _build/certs/shadowman_cert.cer /certs/shadowman_cert.cer
-  - COPY _build/certs/shadowman_private.key /certs/shadowman_private.key
-  - COPY _build/certs/certificate.pfx /certs/certificate.pfx
-  - COPY _build/certs/service-ca-cert.crt /certs/service-ca-cert.crt
+# - COPY _build/certs/shadowman_cert.cer /certs/shadowman_cert.cer
+# - COPY _build/certs/shadowman_private.key /certs/shadowman_private.key
+# - COPY _build/certs/certificate.pfx /certs/certificate.pfx
+# - COPY _build/certs/service-ca-cert.crt /certs/service-ca-cert.crt
   - RUN microdnf reinstall tzdata -y
   - RUN rm -f /etc/ansible/ansible.cfg
   - RUN microdnf clean all
