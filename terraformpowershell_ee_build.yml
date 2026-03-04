@@ -10,7 +10,7 @@
     - sync_repos
 
 - name: Build new terraformpowershellee
-  hosts: ansibledev.shadowman.dev
+  hosts: aap25.dthong.com
   tags: buildee
 
   roles:
