@@ -33,6 +33,7 @@ ee_bindep:
   - python3.11-devel [platform:rpm]
 ee_python:
   - jmespath
+  - pyvmomi
 ee_collections:
   - name: ansible.controller
   - name: ansible.eda
